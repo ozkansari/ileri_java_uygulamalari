@@ -2,9 +2,9 @@ package tr.edu.medipol.ilerijava.ders2.ogrenciapp;
 
 import java.math.BigDecimal;
 
-import tr.edu.medipol.ilerijava.ders1.ogrenciapp.model.Birey;
-import tr.edu.medipol.ilerijava.ders1.ogrenciapp.model.Ogrenci;
-import tr.edu.medipol.ilerijava.ders1.ogrenciapp.model.Ogretmen;
+import tr.edu.medipol.ilerijava.ders2.ogrenciapp.model.Birey;
+import tr.edu.medipol.ilerijava.ders2.ogrenciapp.model.Ogrenci;
+import tr.edu.medipol.ilerijava.ders2.ogrenciapp.model.Ogretmen;
 
 public class OgrenciUygulamasi {
 
