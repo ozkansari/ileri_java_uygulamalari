@@ -6,13 +6,17 @@ package tr.edu.medipol.ilerijava.ders4;
 // Nasil? Thread'in run() metodu
 public class Sayac extends Thread {
 
+	private Arttirici arttirici;
+	
 	// overload
-	public Sayac() {
+	public Sayac(Arttirici arttirici) {
 		super();
+		this.arttirici = arttirici;
 	}
 	
-	public Sayac(String isim) {
+	public Sayac(String isim, Arttirici arttirici) {
 		super(isim);
+		this.arttirici = arttirici;
 	}
 	
 	@Override
@@ -20,7 +24,7 @@ public class Sayac extends Thread {
 		// Thread calistiginda run metodu icindeki islemi gerceklestirir
 		
 		for(int i=0; i<1000000; i++) {
-			OrnekDers4.ortakNesne.atomikIslem(getName());
+			arttirici.atomikIslem(getName());
 		}
 		
 		// run metodu bitince, thread

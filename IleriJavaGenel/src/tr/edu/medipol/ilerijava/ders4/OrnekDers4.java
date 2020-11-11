@@ -2,21 +2,21 @@ package tr.edu.medipol.ilerijava.ders4;
 
 public class OrnekDers4 {
 
-	public static Arttirici ortakNesne = new Arttirici();
-	
 	public static void main(String[] args) throws InterruptedException {
 
-		Sayac sayac0 = new Sayac();
+		Arttirici ortakNesne = new Arttirici();
+		
+		Thread sayac0 = new Sayac(ortakNesne);
 		// sayac1.run(); // normal metod cagrimi 
 		sayac0.start(); // run() icindeki islemin yeni bir Thread/akis olarak calisitirilmasi
 		
-		Sayac sayac1 = new Sayac("Sayac-1");
+		Thread sayac1 = new Sayac("Sayac-1",ortakNesne);
 		sayac1.start();
 		
-		Sayac sayac2 = new Sayac("Sayac-2");
+		Thread sayac2 = new Sayac("Sayac-2",ortakNesne);
 		sayac2.start();
 		
-		Sayac sayac3 = new Sayac("Sayac-3");
+		Thread sayac3 = new Sayac("Sayac-3",ortakNesne);
 		sayac3.start();
 		
 		sayac0.join(); // sayac0'in calismasinin bitmesini bekle
