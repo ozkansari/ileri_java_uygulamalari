@@ -8,16 +8,17 @@ public class VeritabaniOrnek1 {
 	public static void main(String[] args) throws SQLException {
 		
 		// ADIM-1: VERITABINAN BAGLAN
+		
+		// Local mysql
 		String jdbcUrl = 
 				"jdbc" + ":" +	// jdbc javanin standard veritabani baglanti mekanizmasi
 				"mysql" + ":" +	// apache derby kullandigimizi belirtiyoruz
 				"//localhost:3306/ilerijava_ders8";		// veritabani ip:port/db_adi
 		
+		// Online db4freenet 
+		String jdbcUrl2 = "jdbc:mysql://db4free.net:3306/ilerijava_ders8";
 		
-		String jdbcUrl2 = "jdbc:mysql://localhost:3306/ilerijava_ders8";
-		
-		
-		Connection veritabaniBaglantisi = DriverManager.getConnection(jdbcUrl, "root", "");
+		Connection veritabaniBaglantisi = DriverManager.getConnection(jdbcUrl2, "ilerijava_ders8", "ilerijava_ders8");
 		System.out.printf("Veritabanina baglanildi: %s %n", veritabaniBaglantisi.toString() );
 
 		// ADIM-2 : VERITABANI KOMUTU OLUSTUR
