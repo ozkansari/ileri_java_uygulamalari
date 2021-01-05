@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Mebis - Ogrenciler</title>
+  </head>
+  
+  <body>
+  
+    <#include "/part/menu.html" >
+    
+    <div class="container-fluid">
+     <h1>Ogrenciler</h1>
+     
+     <#list OGRENCI_LST as OGRENCI>
+         ${OGRENCI_index+1} -) ${OGRENCI} 
+         <a href="/ogrenci/sil?id=${OGRENCI_index}">sil</a>
+         <br>
+     </#list>
+     
+     <h2>OGRENCI EKLE</h2>
+     <form action="/ogrenci/ekle" method="POST">
+         <input type="text" name="ogrenci_ad" />
+         <input type="submit" value="EKLE">
+     </form>
+     
+     <#assign sayfa_adi="Ogrenciler">
+     <#include "/part/footer.html" >
+    
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
+  </body>
+  
+</html>
