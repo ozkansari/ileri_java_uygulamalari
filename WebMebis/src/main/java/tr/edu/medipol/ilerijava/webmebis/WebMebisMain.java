@@ -20,29 +20,59 @@ public class WebMebisMain {
 		ogretmenSilKomutu();
 	
 		ogrenciEkleKomutu();
-		
+		ogretmenEkleKomutu();
 	}
 
+	private static class OgrenciEkleKomutu extends Route {		
+		protected OgrenciEkleKomutu() {
+			super("/ogrenci/ekle");
+		}
+		@Override
+		public Object handle(Request request, Response response) {
+			String ogrenciAd = request.queryParams("ogrenci_ad");
+			Ogrenciler.ekle(ogrenciAd);
+			response.redirect(OGRENCILER_URI);
+			return null;
+		}
+	}
+	
 	private static void ogrenciEkleKomutu() {
 		
+		/*--
 		Route ogrenciEklePOST = new Route("/ogrenci/ekle") {
 			@Override
 			public Object handle(Request request, Response response) {
 				String ogrenciAd = request.queryParams("ogrenci_ad");
-				Ogrenciler.ogrenciEkle(ogrenciAd);
+				Ogrenciler.ekle(ogrenciAd);
 				response.redirect(OGRENCILER_URI);
 				return null;
 			}
 		};
+		*/
+		Route ogrenciEklePOST = new OgrenciEkleKomutu();
 		post(ogrenciEklePOST);
 	}
+	
+	private static void ogretmenEkleKomutu() {
+		Route ogretmenEklePOST = new Route("/ogretmen/ekle") {
+			@Override
+			public Object handle(Request request, Response response) {
+				String ad = request.queryParams("ogretmen_ad");
+				Ogretmenler.ekle(ad);
+				response.redirect(OGRETMENLER_URI);
+				return null;
+			}
+		};
+		post(ogretmenEklePOST);
+	}
+
 
 	private static void ogrenciSilKomutu() {
 		Route ogrenciSilGET = new Route("/ogrenci/sil") {
 			@Override
 			public Object handle(Request request, Response response) {
 				int idx = Integer.parseInt( request.queryParams("id") );
-				Ogrenciler.ogrenciSil(idx);
+				Ogrenciler.sil(idx);
 				response.redirect(OGRENCILER_URI);
 				return null;
 			}
@@ -51,7 +81,16 @@ public class WebMebisMain {
 	}
 
 	private static void ogretmenSilKomutu() {
-		// TODO
+		Route ogretmenSilGET = new Route("/ogretmen/sil") {
+			@Override
+			public Object handle(Request request, Response response) {
+				int idx = Integer.parseInt( request.queryParams("id") );
+				Ogretmenler.sil(idx);
+				response.redirect(OGRETMENLER_URI);
+				return null;
+			}
+		};
+		get(ogretmenSilGET);
 	}
 
 	private static void anasayfaTanim() {
@@ -70,7 +109,7 @@ public class WebMebisMain {
 			@Override
 			public Object handle(Request request, Response response) {
 
-				List<String> ogrenciler = Ogrenciler.ogrencileriGetir();
+				List<String> ogrenciler = Ogrenciler.getir();
 
 				Map<String, Object> sayfaVerisi = new HashMap<>();
 				sayfaVerisi.put("OGRENCI_LST", ogrenciler);
@@ -86,7 +125,13 @@ public class WebMebisMain {
 		Route ogretmenlerGET = new FreeMarkerRoute(OGRETMENLER_URI) {
 			@Override
 			public Object handle(Request request, Response response) {
-				return new ModelAndView(null, "ogretmenler.html");
+				
+				List<String> ogretmenler = Ogretmenler.getir();
+				
+				Map<String, Object> sayfaVerisi = new HashMap<>();
+				sayfaVerisi.put("OGRETMEN_LST", ogretmenler);
+				
+				return new ModelAndView(sayfaVerisi, "ogretmenler.html");
 			}
 		};
 		get(ogretmenlerGET);

@@ -18,6 +18,18 @@
     <div class="container-fluid">
      <h1>Ogretmenler</h1>
      
+     <#list OGRETMEN_LST as OGRETMEN>
+        ${OGRETMEN_index+1} -) ${OGRETMEN}
+        <a href="/ogretmen/sil?id=${OGRETMEN_index}">sil</a>
+        <br>
+     </#list>
+     
+     <h2>OGRETMEN EKLE</h2>
+     <form action="/ogretmen/ekle" method="POST">
+        <input type="text" name="ogretmen_ad" />
+        <input type="submit" value="EKLE" />
+     </form>
+     
      
      <#assign sayfa_adi="Ogretmenler">
      <#include "/part/footer.html" >

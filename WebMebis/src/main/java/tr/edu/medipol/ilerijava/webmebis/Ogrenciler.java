@@ -10,15 +10,15 @@ public class Ogrenciler {
 		ogrenciler.add("Fatma");
 	}
 
-	public static List<String> ogrencileriGetir() {
+	public static List<String> getir() {
 		return ogrenciler;
 	}
 	
-	public static void ogrenciEkle(String ogrenciAd) {
+	public static void ekle(String ogrenciAd) {
 		ogrenciler.add(ogrenciAd);
 	}
 	
-	public static void ogrenciSil(int idx) {
+	public static void sil(int idx) {
 		ogrenciler.remove(idx);
 	}
 	
