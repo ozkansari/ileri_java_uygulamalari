@@ -11,13 +11,17 @@ public class Main {
 	public Main() {
 		olusturulmaTarihi = LocalDateTime.now();
 	}
+
+	public Main(LocalDateTime ldt) {
+		olusturulmaTarihi = ldt;
+	}
 	
 	// sinif metodu
 	private static void log() {
 		Main nesne1 = new Main();
 		boolean donus1 = nesne1.ozelLog("Uygulama aciliyor");
 		
-		Main nesne2 = new Main();
+		Main nesne2 = new Main(LocalDateTime.now());
 		boolean donus2 = nesne2.ozelLog("Ders 1'den merhaba");
 	}
 	
