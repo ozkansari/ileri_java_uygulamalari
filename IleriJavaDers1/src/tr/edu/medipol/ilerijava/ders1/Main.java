@@ -38,4 +38,8 @@ public class Main {
 	public LocalDateTime getOlusturulmaTarihi(){
 		return olusturulmaTarihi;
 	}
+	
+	public void setOlusturulmaTarihi(LocalDateTime olusturulmaTarihi){
+		this.olusturulmaTarihi = olusturulmaTarihi;
+	}
 }
