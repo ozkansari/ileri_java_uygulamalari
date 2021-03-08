@@ -34,4 +34,8 @@ public class Main {
 	public static void main(String[] args) {
 		Main.log();
 	}
+	
+	public LocalDateTime getOlusturulmaTarihi(){
+		return olusturulmaTarihi;
+	}
 }
