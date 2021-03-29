@@ -16,11 +16,22 @@ public class IstemciProgrami {
 		System.out.println("Istemci programi basladi");
 		
 		// Belirtilen IP-PORTa baglanilamazsa : java.net.ConnectException:
-		Socket sunucuBaglantisi = new Socket(SERVER_IP, SERVER_PORT);
+/*[B]*/	Socket sunucuBaglantisi = new Socket(SERVER_IP, SERVER_PORT);
 		
 		System.out.println("Sunucuya baglanti kuruldu. Sunucu IP: " 
 				+ sunucuBaglantisi.getInetAddress().getHostName() );
 		
+		// TODO
+		
+		InputStream sunucuOkuyucu = sunucuBaglantisi.getInputStream();
+		OutputStream sunucuGonderici = sunucuBaglantisi.getOutputStream();
+		
+		DataInputStream sunucuDataOkuyucu = new DataInputStream(sunucuOkuyucu);
+		DataOutputStream sunucuDataGonderici = new DataOutputStream(sunucuGonderici);
+		
+		sunucuDataGonderici.writeUTF("Merhaba >>>");
+		String okunanData = sunucuDataOkuyucu.readUTF();
+		System.out.println("Okunan: " + okunanData);
 		
 		System.out.println("Istemci programi kapaniyor");
 	}

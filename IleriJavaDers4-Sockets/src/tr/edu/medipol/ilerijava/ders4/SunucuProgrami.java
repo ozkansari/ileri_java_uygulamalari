@@ -8,12 +8,14 @@ public class SunucuProgrami {
 
 	private static final int SERVER_PORT = 8882;
 	
+	private static int baglananIstemciSayisi = 0;
+	
 	public static void main(String[] args) throws IOException {
 		
 		System.out.println("Sunucu programi basladi");
 		
 		// Port kullanimdaysa - java.net.BindException alir
-		ServerSocket sunucuSocket = new ServerSocket(SERVER_PORT);
+/*[A]*/	ServerSocket sunucuSocket = new ServerSocket(SERVER_PORT);
 		
 		System.out.println("Sunucu socket olusturuldu. Port: " + SERVER_PORT);
 		
@@ -23,9 +25,13 @@ public class SunucuProgrami {
 			System.out.println("Yeni istemci baglantisi bekleniyor...");
 			
 			// Bloklanmis sekilde, istemci baglanana kadar bekler
-			Socket istemciBaglantisi = sunucuSocket.accept();
+/*[B]*/		Socket istemciBaglantisi = sunucuSocket.accept();
+			baglananIstemciSayisi++;
 			
-			new Thread(new IstemciRunnable(istemciBaglantisi)).start();
+			new Thread(
+					new IstemciRunnable(istemciBaglantisi), 
+					String.valueOf(baglananIstemciSayisi) 
+				).start();
 		}
 
 		System.out.println("Sunucu programi kapaniyor");
@@ -34,11 +40,15 @@ public class SunucuProgrami {
 	private static class IstemciRunnable implements Runnable {
 
 		private Socket istemciBaglantisi;
+		private InputStream sunucuOkuyucu;
+		private OutputStream sunucuGonderici;
 		
-		IstemciRunnable(Socket istemciBaglantisi) {
+		IstemciRunnable(Socket istemciBaglantisi) throws IOException {
 			this.istemciBaglantisi = istemciBaglantisi;
+			this.sunucuOkuyucu = istemciBaglantisi.getInputStream();
+			this.sunucuGonderici = istemciBaglantisi.getOutputStream();
 			System.out.printf(
-					"Istemci baglandi. Istemci IP: %s, Port: %s " 
+					"Istemci baglandi. Istemci IP: %s, Port: %s %n" 
 					, istemciBaglantisi.getInetAddress().getHostAddress()
 					, istemciBaglantisi.getPort()
 			);
@@ -46,8 +56,24 @@ public class SunucuProgrami {
 		
 		@Override
 		public void run() {
-			// TODO Auto-generated method stub
 			
+			DataInputStream sunucuDataOkuyucu = new DataInputStream(sunucuOkuyucu);
+			DataOutputStream sunucuDataGonderici = new DataOutputStream(sunucuGonderici);
+			
+			while(true) {
+				
+				try {
+					String okunanData = sunucuDataOkuyucu.readUTF();
+					System.out.println("Okunan: " + okunanData);
+
+					sunucuDataGonderici.writeUTF("Mesaj alindi <<<");
+					
+				} catch (IOException e) {
+					System.out.println("Mesaj okuma hatasi: " + e.getMessage());
+					return;
+				}
+				
+			}
 		}
 		
 	}
