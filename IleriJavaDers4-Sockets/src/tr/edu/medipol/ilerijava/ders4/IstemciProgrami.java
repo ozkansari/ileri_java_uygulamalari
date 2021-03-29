@@ -1,6 +1,7 @@
 package tr.edu.medipol.ilerijava.ders4;
 
 import java.net.*;
+import java.util.Scanner;
 import java.io.*;
 
 //Sunucu ve Istemci ayri main() metodlarina sahip yani ayri program olarak calisir
@@ -8,7 +9,7 @@ import java.io.*;
 public class IstemciProgrami {
 
 	private static final String SERVER_IP = "localhost";
-	private static final int SERVER_PORT = 8882;
+	private static final int SERVER_PORT = 8883;
 	
 	
 	public static void main(String[] args) throws UnknownHostException, IOException {
@@ -29,11 +30,16 @@ public class IstemciProgrami {
 		DataInputStream sunucuDataOkuyucu = new DataInputStream(sunucuOkuyucu);
 		DataOutputStream sunucuDataGonderici = new DataOutputStream(sunucuGonderici);
 		
-		sunucuDataGonderici.writeUTF("Merhaba >>>");
+		Scanner konsolOkuyucu = new Scanner(System.in);
+		System.out.println("Adinizi giriniz: ");
+		String name = konsolOkuyucu.nextLine();
+		
+		sunucuDataGonderici.writeUTF("Merhaba " + name + " >>>");
 		String okunanData = sunucuDataOkuyucu.readUTF();
 		System.out.println("Okunan: " + okunanData);
 		
 		System.out.println("Istemci programi kapaniyor");
+		konsolOkuyucu.close();
 	}
 
 }

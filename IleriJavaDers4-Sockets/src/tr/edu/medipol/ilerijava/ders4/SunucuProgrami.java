@@ -6,7 +6,7 @@ import java.io.*;
 // Sunucu ve Istemci ayri main() metodlarina sahip yani ayri program olarak calisir
 public class SunucuProgrami {
 
-	private static final int SERVER_PORT = 8882;
+	private static final int SERVER_PORT = 8883;
 	
 	private static int baglananIstemciSayisi = 0;
 	
