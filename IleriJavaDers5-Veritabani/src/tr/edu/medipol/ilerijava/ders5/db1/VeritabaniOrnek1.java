@@ -2,7 +2,7 @@ package tr.edu.medipol.ilerijava.ders5.db1;
 
 import java.sql.*;
 
-public class VertiabaniOrnek1 {
+public class VeritabaniOrnek1 {
 
 	public static void main(String[] args) throws Exception {
 		
