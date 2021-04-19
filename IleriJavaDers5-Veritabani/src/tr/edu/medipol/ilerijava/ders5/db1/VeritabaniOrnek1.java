@@ -35,22 +35,26 @@ public class VeritabaniOrnek1 {
 		}
 		
 		// 3B -) Insert komutu ile veri ekle
-		String yeniOgrenciSql = "INSERT INTO ogrenciler VALUES ( 'mehmet', 25)";
+		String yeniOgrenciSql = "INSERT INTO ogrenciler VALUES ( 'ismet', 27)";
 		veritabaniKomutu.executeUpdate(yeniOgrenciSql);
 		System.out.println("Ogrenci eklendi");
 		
 		// 3C-) Verileri sorgula
 		String ogrenciKayitlariSql = "SELECT * FROM ogrenciler";
-		ResultSet sonuclar = veritabaniKomutu.executeQuery(ogrenciKayitlariSql);
-		while(sonuclar.next()) { // bir sonraki kayit mevcutsa true, baska kayit yoksa false
+		ResultSet ogrenciKayitSonuclari = veritabaniKomutu.executeQuery(ogrenciKayitlariSql);
+		while(ogrenciKayitSonuclari.next()) { // bir sonraki kayit mevcutsa true, baska kayit yoksa false
 			
-			String ogrenciIsim = sonuclar.getString("isim");
-			int ogrenciYas = sonuclar.getInt(2);
+			String ogrenciIsim = ogrenciKayitSonuclari.getString("isim");
+			int ogrenciYas = ogrenciKayitSonuclari.getInt(2);
 			System.out.printf("%s - %d %n", ogrenciIsim, ogrenciYas);
 			// System.out.println(ogrenciIsim + " - " + ogrenciYas);
 		}
-
 		
+		// 3D-) Count sorgusu calistir
+		String ogrenciSayisiSql = "SELECT COUNT(*) FROM ogrenciler";
+		ResultSet ogrenciSayisiSonuc = veritabaniKomutu.executeQuery(ogrenciSayisiSql);
+		ogrenciSayisiSonuc.next();
+		System.out.println(ogrenciSayisiSonuc.getInt(1) + " adet ogrenci var.");
 		
 		System.out.println("Program sonlandi");	
 	}
