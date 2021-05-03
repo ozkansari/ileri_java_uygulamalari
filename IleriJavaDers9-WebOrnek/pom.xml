@@ -20,13 +20,27 @@
 		    <artifactId>spark-core</artifactId>
 		    <version>1.1.1</version>
 		</dependency>
-
+		
+		<dependency>
+            <groupId>com.sparkjava</groupId>
+            <artifactId>spark-template-freemarker</artifactId>
+            <version>1.0</version>
+        </dependency>
+        
+		<dependency>
+		    <groupId>org.freemarker</groupId>
+		    <artifactId>freemarker</artifactId>
+		    <version>2.3.31</version>
+		</dependency>
+		
+		<!-- 
 		<dependency>
 			<groupId>org.apache.derby</groupId>
 			<artifactId>derby</artifactId>
 			<version>10.14.2.0</version>
 		</dependency>
-
+         -->
+         
 	</dependencies>
 
 </project>
