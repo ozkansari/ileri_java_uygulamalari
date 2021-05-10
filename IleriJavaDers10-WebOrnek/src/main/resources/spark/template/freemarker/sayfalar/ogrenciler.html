@@ -1,0 +1,46 @@
+<html>
+
+    <head>
+        <title>OGRENCILER SAYFASI</title>
+    </head>
+
+    <body>
+    
+        <h1>OGRENCILER 1</h1>
+        <#list OGRENCI_LIST as OGRENCI >
+            <p> 
+                ${OGRENCI?counter} -) ${OGRENCI} 
+                <a href="/ogrenciler/sil?idx=${OGRENCI_index}">sil</a>
+            </p>
+        <#else>
+            <p>Ogrenci yok</p>
+        </#list>
+        
+        
+        <h1>OGRENCILER 2</h1>
+        <#list OGRENCI_LIST>
+            <ol>
+            <#items as OGRENCI>
+                <li> 
+                    ${OGRENCI} 
+                    <a href="/ogrenciler/sil?idx=${OGRENCI_index}">sil</a>
+                </li>
+            </#items>
+            </ol>
+        <#else>
+            <p>Ogrenci yok</p>
+        </#list>
+        
+        
+        <h1>OGRENCILER 3</h1>
+        Ogrenciler : <#list OGRENCI_LIST as OGRENCI > ${OGRENCI} <#sep>,</#list>
+        
+        
+        <h1>OGRENCI EKLE</h1>
+        <form action="/ogrenciler/ekle" method="POST">
+            <input type="text" name="ogrenci_ad" />
+            <input type="submit" value="EKLE" />
+        </form>
+    
+    </body>
+</html>
