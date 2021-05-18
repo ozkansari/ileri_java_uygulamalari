@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Web Ornek 5</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <#if sayfa_adi == 'index'      > <a class="nav-link disabled" aria-current="page" href="/webornek5/"           >Anasayfa</a>    
+          <#else> <a class="nav-link" href="/webornek5/"           >Anasayfa</a>     </#if>
+        </li>
+        <li class="nav-item">
+          <#if sayfa_adi == 'ogrenciler' > <a class="nav-link disabled" aria-current="page" href="/webornek5/ogrenciler/">Ogrenciler</a>  
+          <#else> <a class="nav-link" href="/webornek5/ogrenciler/">Ogrenciler</a>   </#if>
+        </li>
+        <li class="nav-item">
+          <#if sayfa_adi == 'ogretmenler'> <a class="nav-link disabled" aria-current="page" href="/webornek5/ogretmenler/">Ogretmenler</a> 
+          <#else> <a class="nav-link" href="/webornek5/ogretmenler/">Ogretmenler</a> </#if>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
